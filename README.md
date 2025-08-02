@@ -1,100 +1,61 @@
-# 🤖 Chat RAG - Sistema de Conversación con Documentos
+# 🏥 Proyecto Chat RAG - Sistema de Consulta Médica
 
-Un sistema RAG (Retrieval-Augmented Generation) moderno que permite conversar con tus documentos usando modelos de lenguaje local con Ollama.
+Sistema de chat inteligente con Retrieval Augmented Generation (RAG) especializado en documentos médicos, construido con FastAPI, LangChain y Ollama.
 
 ## ✨ Características
 
-- 🚀 **Modelos configurables**: 7 opciones desde ultra-ligero (1GB RAM) hasta alta calidad (8GB RAM)
-- 📄 **Múltiples formatos**: PDF, TXT, DOCX y más
-- 💬 **Chat inteligente**: Memoria conversacional y contexto persistente
-- 🐳 **Docker**: Configuración completa con Docker Compose
-- ⚡ **Optimizado**: Arquitectura ligera y eficiente
-- 🎨 **Interfaz moderna**: UI responsiva con información del modelo
+- 🤖 **Chat inteligente en español** con modelos locales de Ollama
+- 📄 **Procesamiento de documentos** médicos (PDF, DOCX, TXT)
+- 🧠 **RAG profesional** con memoria conversacional
+- 🔍 **Búsqueda semántica** en base de datos vectorial
+- 🎯 **Modelos configurables** desde ultra-ligeros hasta alta calidad
+- 🐳 **Containerizado** con Docker Compose
+- 🌐 **Interfaz web** moderna y responsiva
 
 ## 🚀 Inicio Rápido
 
-### Prerrequisitos
+### Prerequisitos
 - Docker y Docker Compose
-- Al menos 2GB de RAM libre (según modelo)
+- Git
 
-### 1. Clonar y configurar
+### Instalación
+
 ```bash
-git clone <tu-repo>
+# Clonar el repositorio
+git clone <tu-repositorio>
 cd proyecto-chat-rag
-```
 
-### 2. Configurar modelo (opcional)
-```bash
-# Editar .env para cambiar modelo
-OLLAMA_MODEL=tinyllama  # Modelo por defecto (ultra-rápido)
-```
+# Configurar variables de entorno
+cp .env.example .env
 
-### 3. Ejecutar
-```bash
+# Iniciar el sistema
 docker-compose up --build
 ```
 
-### 4. Usar
-- **Web UI**: http://localhost:8000
-- **API**: http://localhost:8000/docs
+### Acceso
+- **Aplicación web**: http://localhost:8000
+- **API Ollama**: http://localhost:11434
 
-## 🎛️ Configuración de Modelos
+## ⚙️ Configuración
 
 ### Modelos Disponibles
 
-| Modelo | Tamaño | RAM | Velocidad | Calidad | Uso Recomendado |
-|--------|--------|-----|-----------|---------|-----------------|
-| `tinyllama` | 1.1B | 1-2GB | ⚡⚡⚡ | ⭐⭐ | Desarrollo/Testing |
-| `gemma2:2b` | 2B | 2-3GB | ⚡⚡ | ⭐⭐⭐ | Producción ligera |
-| `qwen2:1.5b` | 1.5B | 2-3GB | ⚡⚡ | ⭐⭐⭐ | Equilibrio ligero |
-| `llama3.2:3b` | 3B | 4-6GB | ⚡ | ⭐⭐⭐⭐ | Equilibrado |
-| `phi3:3.8b` | 3.8B | 4-6GB | ⚡ | ⭐⭐⭐⭐ | Optimizado |
-| `llama3.1:8b` | 8B | 8GB | 🐌 | ⭐⭐⭐⭐⭐ | Alta calidad |
-| `mistral:7b` | 7B | 8GB | 🐌 | ⭐⭐⭐⭐⭐ | Mistral AI |
+| Modelo | Tamaño | RAM | Velocidad | Uso Recomendado |
+|--------|--------|-----|-----------|-----------------|
+| `tinyllama` | 1.1B | 1-2GB | ⚡⚡⚡ | Desarrollo/Testing |
+| `gemma2:2b` | 2B | 2-3GB | ⚡⚡ | Producción ligera |
+| `llama3.2:3b` | 3B | 4-6GB | ⚡ | Equilibrado |
+| `mistral:7b` | 7B | 8GB | 🐌 | Alta calidad |
 
 ### Cambiar Modelo
 
-#### Opción 1: Script automático (Recomendado)
 ```bash
-./change-model.sh tinyllama      # Ultra rápido
-./change-model.sh gemma2:2b      # Muy eficiente  
-./change-model.sh llama3.2:3b    # Equilibrado
-./change-model.sh mistral:7b     # Alta calidad
-```
+# Opción 1: Editar .env
+OLLAMA_MODEL=gemma2:2b
 
-#### Opción 2: Variable de entorno
-```bash
-OLLAMA_MODEL=gemma2:2b docker-compose up --build
+# Opción 2: Variable de entorno
+OLLAMA_MODEL=mistral:7b docker-compose up --build
 ```
-
-#### Opción 3: Editar .env
-```env
-OLLAMA_MODEL=tinyllama  # Cambiar por el modelo deseado
-```
-
-## 📁 Estructura del Proyecto
-
-```
-proyecto-chat-rag/
-├── app/
-│   ├── main.py              # Aplicación FastAPI principal
-│   ├── models_config.py     # Configuración de modelos
-│   ├── static/              # Archivos estáticos
-│   │   ├── css/style.css    # Estilos
-│   │   └── js/chat.js       # JavaScript del chat
-│   └── templates/
-│       └── chat.html        # Interfaz web
-├── data/                    # Documentos cargados
-├── vectorstore/            # Base de datos vectorial
-├── .env                    # Variables de entorno
-├── docker-compose.yml      # Configuración Docker
-├── Dockerfile             # Imagen de la aplicación
-├── requirements.txt       # Dependencias Python
-├── change-model.sh        # Script cambio de modelo
-└── README.md             # Esta documentación
-```
-
-## 🔧 Configuración Avanzada
 
 ### Variables de Entorno (.env)
 
@@ -103,226 +64,172 @@ proyecto-chat-rag/
 OLLAMA_MODEL=tinyllama
 OLLAMA_HOST=http://ollama:11434
 
-# Aplicación
+# Configuración de la aplicación
 APP_HOST=0.0.0.0
 APP_PORT=8000
 DATA_DIR=data
 VECTOR_DIR=vectorstore
 
-# RAG
+# Configuración RAG
 RAG_CHUNK_SIZE=1000
 RAG_CHUNK_OVERLAP=200
 RAG_K_DOCUMENTS=3
 ```
 
-### Personalizar Docker Compose
-
-```yaml
-services:
-  app:
-    environment:
-      - OLLAMA_MODEL=${OLLAMA_MODEL:-tinyllama}
-    volumes:
-      - ./custom-data:/app/data  # Directorio personalizado
-  
-  ollama:
-    environment:
-      - OLLAMA_KEEP_ALIVE=24h    # Mantener modelo en memoria
-```
-
-## 📡 API Endpoints
-
-### Principales
-- `GET /` - Interfaz web
-- `POST /upload` - Cargar documentos
-- `POST /chat` - Enviar mensaje al chat
-
-### Información
-- `GET /api/models` - Listar modelos disponibles
-- `GET /api/model/current` - Información del modelo actual
-- `GET /docs` - Documentación Swagger
-
-### Ejemplos de API
-
-```bash
-# Información del modelo actual
-curl http://localhost:8000/api/model/current
-
-# Cargar documento
-curl -X POST -F "files=@documento.pdf" http://localhost:8000/upload
-
-# Enviar mensaje
-curl -X POST -F "message=¿Qué dice el documento?" http://localhost:8000/chat
-```
-
-## 💡 Uso
+## 📊 Uso
 
 ### 1. Cargar Documentos
-- Usa la interfaz web o API
-- Formatos soportados: PDF, TXT, DOCX
+- Accede a http://localhost:8000
+- Usa la sección "Cargar Archivos" 
+- Soporta: PDF, DOCX, TXT
 - Los documentos se procesan automáticamente
 
-### 2. Hacer Preguntas
-- El chat mantiene contexto de la conversación
-- Las respuestas incluyen información de los documentos
-- Soporta preguntas de seguimiento
+### 2. Hacer Consultas
+- Escribe tu pregunta en el chat
+- El sistema responde basándose en los documentos cargados
+- Incluye citas de las fuentes utilizadas
+- Mantiene contexto conversacional
 
-### 3. Gestionar Modelos
-- Cambiar modelo sin perder datos
-- Información en tiempo real del modelo usado
-- Optimización automática según recursos
-
-## 🛠️ Desarrollo
-
-### Estructura del Código
-
-```python
-# app/main.py - Aplicación principal
-from fastapi import FastAPI
-from langchain_ollama import OllamaLLM, OllamaEmbeddings
-from langchain_community.vectorstores import Chroma
-
-# Configuración dinámica de modelos
-MODEL_NAME = os.getenv("OLLAMA_MODEL", "tinyllama")
-llm = OllamaLLM(model=MODELS[MODEL_NAME]["model"])
-```
-
-### Agregar Nuevo Modelo
-
-1. Editar `app/models_config.py`:
-```python
-MODELS = {
-    "nuevo_modelo": {
-        "model": "nuevo_modelo:version",
-        "name": "Nuevo Modelo",
-        "size": "XB",
-        "ram": "~X GB",
-        "description": "Descripción del modelo"
-    }
-}
-```
-
-2. Actualizar `change-model.sh` con el nuevo modelo
-
-### Testing Local
+### 3. API Endpoints
 
 ```bash
-# Desarrollo sin Docker
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+# Información de modelos
+GET /api/models
 
-# Testing con modelo específico
-OLLAMA_MODEL=tinyllama python -m uvicorn app.main:app --reload
+# Chat
+POST /chat
+Content-Type: application/x-www-form-urlencoded
+message=¿Qué es la diabetes?
+
+# Subir documentos
+POST /upload
+Content-Type: multipart/form-data
+
+# Limpiar conversación
+POST /chat/clear
+
+# Estado de documentos
+GET /api/documents
 ```
 
-## 🐛 Solución de Problemas
-
-### Problemas Comunes
-
-#### Error: "model not found"
-```bash
-# Verificar modelo disponible
-docker exec -it proyecto-chat-rag-ollama-1 ollama list
-
-# Descargar modelo manualmente
-docker exec -it proyecto-chat-rag-ollama-1 ollama pull tinyllama
-```
-
-#### RAM insuficiente
-```bash
-# Usar modelo más ligero
-./change-model.sh tinyllama
-
-# O configurar directamente
-OLLAMA_MODEL=tinyllama docker-compose up --build
-```
-
-#### Contenedor no inicia
-```bash
-# Ver logs
-docker-compose logs app
-docker-compose logs ollama
-
-# Reiniciar limpio
-docker-compose down -v
-docker-compose up --build
-```
-
-### Logs y Debugging
-
-```bash
-# Ver logs en tiempo real
-docker-compose logs -f app
-
-# Acceder al contenedor
-docker exec -it proyecto-chat-rag-app-1 bash
-
-# Estado de Ollama
-curl http://localhost:11434/api/tags
-```
-
-## 🤝 Contribuir
-
-1. Fork del proyecto
-2. Crear rama: `git checkout -b feature/nueva-funcionalidad`
-3. Commit: `git commit -m 'Agregar nueva funcionalidad'`
-4. Push: `git push origin feature/nueva-funcionalidad`
-5. Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver [LICENSE](LICENSE) para detalles.
-
-## 🙏 Reconocimientos
-
-- [Ollama](https://ollama.ai/) - Modelos de lenguaje local
-- [LangChain](https://langchain.com/) - Framework RAG
-- [FastAPI](https://fastapi.tiangolo.com/) - Web framework
-- [Chroma](https://www.trychroma.com/) - Base de datos vectorial
-
----
-
-**¿Preguntas?** Abre un [Issue](../../issues) o consulta la [documentación de la API](http://localhost:8000/docs).cto Chat RAG Local
-
-Servidor local RAG (Retrieval-Augmented Generation) con:
-- FastAPI + Uvicorn
-- LangChain + Ollama
-- Ingestión automática de archivos (PDF, DOCX, TXT, CSV, MD, PPTX, HTML, JSON, imágenes y videos)
-- Filtrado ZIP y subdirectorios
-
-## Despliegue con Docker
-
-1. Construir y levantar contenedores:
-
-   ```bash
-   docker-compose up --build
-   ```
-
-2. Abrir en el navegador:
-
-   http://localhost:8000
-
-## Estructura del Proyecto
+## 🏗️ Arquitectura
 
 ```
 proyecto-chat-rag/
-├── app/                 # Código del servidor FastAPI
-│   └── main.py
-├── data/                # Documentos de usuario (subdirectorios permitidos)
-├── scripts/             # Scripts auxiliares (ingestión de datos)
-│   └── ingest.py
-├── vectorstore/         # Índice vectorial guardado
-├── .gitignore
-├── README.md
-├── requirements.txt
-├── Dockerfile
-└── docker-compose.yml
+├── app/
+│   ├── main.py              # FastAPI + RAG logic
+│   ├── static/              # CSS, JS, assets
+│   └── templates/           # HTML templates
+├── data/                    # Documentos (local)
+├── vectorstore/             # Base datos vectorial (local)
+├── docker-compose.yml       # Orquestación
+├── Dockerfile              # Imagen de la app
+├── requirements.txt        # Dependencias Python
+└── .env                    # Configuración
 ```
 
-## Formatos soportados
+### Componentes
 
-- Texto: .txt, .md, .csv, .json, .html
-- Office: .pdf, .docx, .pptx
-- Imágenes: .png, .jpg, .jpeg, .tiff (OCR con Tesseract)
-- Videos: .mp4, .avi (transcripción con Whisper)
+- **FastAPI**: API REST y servidor web
+- **LangChain**: Framework RAG y procesamiento
+- **Ollama**: Modelos de IA locales
+- **ChromaDB**: Base de datos vectorial
+- **Docker**: Containerización
+
+## 🔧 Desarrollo
+
+### Ejecutar en modo desarrollo
+
+```bash
+# Con logs detallados
+docker-compose up --build
+
+# Solo la aplicación (Ollama en background)
+docker-compose up app
+
+# Reconstruir solo la app
+docker-compose build app && docker-compose up app
+```
+
+### Logs y debugging
+
+```bash
+# Ver logs
+docker-compose logs -f app
+docker-compose logs -f ollama
+
+# Acceder al contenedor
+docker-compose exec app bash
+```
+
+## 🛠️ Solución de Problemas
+
+### Problemas Comunes
+
+**Error: "Collection expecting embedding with dimension"**
+```bash
+# Limpiar vectorstore
+docker-compose down
+docker volume rm proyecto-chat-rag_ollama_models
+docker-compose up --build
+```
+
+**Respuestas lentas**
+- Usar modelo más ligero: `tinyllama` o `gemma2:2b`
+- Verificar recursos disponibles
+- Reducir `RAG_K_DOCUMENTS` en `.env`
+
+**Error de archivos PDF**
+- Verificar que el PDF no esté corrupto
+- Probar con formato TXT primero
+- Revisar logs: `docker-compose logs app`
+
+**Puerto ocupado**
+```bash
+# Cambiar puertos en docker-compose.yml
+ports:
+  - "8001:8000"  # App
+  - "11435:11434"  # Ollama
+```
+
+## 📋 Requisitos del Sistema
+
+### Mínimos
+- RAM: 4GB
+- CPU: 2 cores
+- Disco: 2GB libre
+- Docker: 20.x+
+
+### Recomendado
+- RAM: 8GB+
+- CPU: 4+ cores
+- Disco: 5GB libre
+- SSD para mejor rendimiento
+
+## 📝 Notas
+
+- Los documentos se procesan localmente (privacidad)
+- Los modelos se descargan automáticamente la primera vez
+- La base vectorial se crea automáticamente
+- Soporta conversaciones con contexto
+- Respuestas especializadas en español
+
+## 🔒 Privacidad
+
+- ✅ Todo funciona localmente
+- ✅ No se envían datos a servicios externos
+- ✅ Documentos médicos permanecen en tu máquina
+- ✅ Modelos de IA ejecutan offline
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature
+3. Commit tus cambios
+4. Push a la rama
+5. Abre un Pull Request
+
+---
+
+**Desarrollado con ❤️ para la comunidad médica**
 
