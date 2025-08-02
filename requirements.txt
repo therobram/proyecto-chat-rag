@@ -1,0 +1,21 @@
+fastapi
+uvicorn
+python-dotenv
+jinja2
+langchain
+langchain-community
+langchain-ollama
+chromadb
+unstructured[pdf,docx,md,pptx,image,html]
+pypdf
+python-docx
+python-multipart
+aiofiles
+Pillow
+pytesseract
+# Optimizaciones profesionales
+sentence-transformers
+tiktoken
+# Procesamiento mejorado  
+pdfplumber
+textstat

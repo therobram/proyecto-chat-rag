@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat RAG - Conversa con tus Documentos</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Chat con tus Documentos</h1>
+    
+    <!-- Información del modelo actual -->
+    <div id="model-info">
+        <h3>🤖 Modelo Actual</h3>
+        <div class="model-card">
+            <strong>{{ current_model.name }}</strong> ({{ current_model.size }})
+            <br>
+            <small>{{ current_model.description }}</small>
+            <br>
+            <small>💾 RAM estimada: {{ current_model.ram }}</small>
+        </div>
+    </div>
+    
+    <!-- Sección de carga de archivos -->
+    <div id="upload-section">
+        <h3>📁 Cargar Documentos</h3>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="file-input">
+                <input type="file" name="files" multiple accept=".pdf,.txt,.docx,.zip">
+            </div>
+            <button type="submit" class="upload-btn">Cargar Archivos</button>
+        </form>
+    </div>
+    
+    <!-- Chat -->
+    <div id="chat">
+        <div class="system-message">
+            <strong>🤖 Sistema RAG Profesional</strong><br>
+            <small>Proporciono respuestas precisas basadas únicamente en tus documentos cargados.</small>
+        </div>
+    </div>
+    
+    <!-- Formulario de chat -->
+    <form action="/chat" method="post" id="chat-form">
+        <input type="text" name="message" id="message-input" placeholder="Escribe tu pregunta sobre los documentos..." required>
+        <button type="submit" id="send-btn">Enviar</button>
+    </form>
+    
+    <!-- Panel de información -->
+    <div id="info-panel" style="display: none;">
+        <div class="info-section">
+            <h4>📊 Información de la Respuesta</h4>
+            <div id="response-info"></div>
+        </div>
+    </div>
+    
+    <script src="/static/js/chat.js"></script>
+</body>
+</html>
