@@ -56,14 +56,27 @@ venv.bak/
 *.swo
 *~
 
-# OS
+# OS - macOS
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
+.fseventsd
+.DocumentRevisions-V100
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# OS - Windows
 ehthumbs.db
 Thumbs.db
+Desktop.ini
 
 # Logs
 *.log
