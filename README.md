@@ -1,11 +1,13 @@
-# 🏥 Proyecto Chat RAG - Sistema de Consulta Médica
+# 🤖 Proyecto Chat RAG - Plataforma Inteligente de Consulta de Documentos
 
-Sistema de chat inteligente con Retrieval Augmented Generation (RAG) especializado en documentos médicos, construido con FastAPI, LangChain y Ollama.
+Sistema de chat inteligente con Retrieval Augmented Generation (RAG) que permite consultar cualquier tipo de documentos de forma conversacional, construido con FastAPI, LangChain y Ollama.
 
 ## ✨ Características
 
 - 🤖 **Chat inteligente en español** con modelos locales de Ollama
-- 📄 **Procesamiento de documentos** médicos (PDF, DOCX, TXT)
+- 📄 **Procesamiento avanzado de documentos** (PDF, DOCX, TXT, MD, PPTX, HTML)
+- 🖼️ **Extracción de texto de imágenes** con OCR (Tesseract)
+- 🎵 **Transcripción de audio** con Whisper AI
 - 🧠 **RAG profesional** con memoria conversacional
 - 🔍 **Búsqueda semántica** en base de datos vectorial
 - 🎯 **Modelos configurables** desde ultra-ligeros hasta alta calidad
@@ -81,8 +83,10 @@ RAG_K_DOCUMENTS=3
 ### 1. Cargar Documentos
 - Accede a http://localhost:8000
 - Usa la sección "Cargar Archivos" 
-- Soporta: PDF, DOCX, TXT
-- Los documentos se procesan automáticamente
+- **Documentos**: PDF, DOCX, TXT, MD, PPTX, HTML
+- **Imágenes**: PNG, JPG, JPEG (extrae texto con OCR)
+- **Audio**: MP3, WAV, M4A (transcribe con Whisper)
+- Los archivos se procesan automáticamente
 
 ### 2. Hacer Consultas
 - Escribe tu pregunta en el chat
@@ -99,7 +103,7 @@ GET /api/models
 # Chat
 POST /chat
 Content-Type: application/x-www-form-urlencoded
-message=¿Qué es la diabetes?
+message=¿Cuál es el proceso de registro?
 
 # Subir documentos
 POST /upload
@@ -206,20 +210,45 @@ ports:
 - Disco: 5GB libre
 - SSD para mejor rendimiento
 
-## 📝 Notas
+## 📝 Casos de Uso
 
-- Los documentos se procesan localmente (privacidad)
-- Los modelos se descargan automáticamente la primera vez
-- La base vectorial se crea automáticamente
-- Soporta conversaciones con contexto
-- Respuestas especializadas en español
+### 🏥 **Sector Médico**
+- Consultas sobre expedientes médicos
+- Análisis de estudios e imágenes médicas
+- Transcripción de consultas grabadas
 
-## 🔒 Privacidad
+### 📚 **Educación**
+- Base de conocimiento académica
+- Consultas sobre libros y papers
+- Análisis de contenido educativo
 
-- ✅ Todo funciona localmente
-- ✅ No se envían datos a servicios externos
-- ✅ Documentos médicos permanecen en tu máquina
-- ✅ Modelos de IA ejecutan offline
+### ⚖️ **Legal**
+- Búsqueda en documentos legales
+- Análisis de contratos y normativas
+- Consultas sobre jurisprudencia
+
+### 🏢 **Empresarial**
+- Documentación técnica
+- Manuales y procedimientos
+- Análisis de reportes empresariales
+
+### 🔬 **Investigación**
+- Base de papers científicos
+- Análisis de datos de investigación
+- Consultas sobre bibliografía
+
+### 💼 **Cualquier sector**
+- Adaptable a cualquier dominio
+- Procesa documentos específicos del negocio
+- Personalizable según necesidades
+
+## 🔒 Privacidad y Seguridad
+
+- ✅ **100% Local**: Todo funciona en tu infraestructura
+- ✅ **Sin envío de datos**: No se conecta a servicios externos
+- ✅ **Documentos seguros**: Permanecen en tu máquina
+- ✅ **Modelos offline**: IA ejecuta completamente local
+- ✅ **Escalable**: Desde laptop personal hasta servidores empresariales
 
 ## 🤝 Contribuir
 
@@ -231,5 +260,5 @@ ports:
 
 ---
 
-**Desarrollado con ❤️ para la comunidad médica**
+**Plataforma RAG universal - Adaptable a cualquier industria y caso de uso** 🚀
 
