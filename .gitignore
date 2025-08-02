@@ -2,6 +2,11 @@
 data/
 vectorstore/
 
+# Backups de datos
+data_backup_*/
+vectorstore_backup_*/
+*_backup_*
+
 # Archivos de configuración sensibles
 .env.local
 .env.production
