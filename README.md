@@ -24,7 +24,7 @@ Sistema de chat inteligente con Retrieval Augmented Generation (RAG) que permite
 
 ```bash
 # Clonar el repositorio
-git clone <tu-repositorio>
+git clone https://github.com/therobram/proyecto-chat-rag
 cd proyecto-chat-rag
 
 # Configurar variables de entorno
@@ -37,6 +37,38 @@ docker-compose up --build
 ### Acceso
 - **Aplicación web**: http://localhost:8000
 - **API Ollama**: http://localhost:11434
+
+## 📁 Formatos Soportados
+
+### 📄 **Documentos de Texto**
+- **PDF**: Portable Document Format
+- **DOCX**: Microsoft Word
+- **TXT**: Archivos de texto plano
+- **MD**: Markdown
+- **HTML**: Páginas web
+- **PPTX**: Presentaciones PowerPoint
+
+### 🖼️ **Imágenes (OCR con Tesseract)**
+- **PNG**: Portable Network Graphics
+- **JPG/JPEG**: Joint Photographic Experts Group
+- **GIF**: Graphics Interchange Format
+- **BMP**: Bitmap
+- **TIFF**: Tagged Image File Format
+
+### 🎵 **Audio (Transcripción con Whisper AI)**
+- **MP3**: MPEG Audio Layer III
+- **WAV**: Waveform Audio File Format
+- **M4A**: MPEG-4 Audio
+- **AAC**: Advanced Audio Coding
+- **OGG**: Ogg Vorbis
+- **FLAC**: Free Lossless Audio Codec
+
+### 🎬 **Video (Extracción de audio + transcripción)**
+- **MP4**: MPEG-4 Video
+- **AVI**: Audio Video Interleave
+- **MOV**: QuickTime Movie
+- **MKV**: Matroska Video
+- **WMV**: Windows Media Video
 
 ## ⚙️ Configuración
 
@@ -59,7 +91,7 @@ OLLAMA_MODEL=gemma2:2b
 OLLAMA_MODEL=mistral:7b docker-compose up --build
 ```
 
-### Variables de Entorno (.env)
+### Configuración (.env.example → .env)
 
 ```env
 # Modelo de IA
@@ -76,6 +108,11 @@ VECTOR_DIR=vectorstore
 RAG_CHUNK_SIZE=1000
 RAG_CHUNK_OVERLAP=200
 RAG_K_DOCUMENTS=3
+
+# Procesamiento de archivos
+MAX_FILE_SIZE_MB=50
+ENABLE_OCR=true
+ENABLE_WHISPER=true
 ```
 
 ## 📊 Uso
@@ -84,8 +121,9 @@ RAG_K_DOCUMENTS=3
 - Accede a http://localhost:8000
 - Usa la sección "Cargar Archivos" 
 - **Documentos**: PDF, DOCX, TXT, MD, PPTX, HTML
-- **Imágenes**: PNG, JPG, JPEG (extrae texto con OCR)
-- **Audio**: MP3, WAV, M4A (transcribe con Whisper)
+- **Imágenes**: PNG, JPG, JPEG, GIF, BMP, TIFF (extrae texto con OCR)
+- **Audio**: MP3, WAV, M4A, AAC, OGG, FLAC (transcribe con Whisper)
+- **Video**: MP4, AVI, MOV, MKV, WMV (extrae audio y transcribe)
 - Los archivos se procesan automáticamente
 
 ### 2. Hacer Consultas
